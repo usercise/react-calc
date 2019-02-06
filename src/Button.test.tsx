@@ -8,3 +8,14 @@ it('renders without crashing', () => {
   );
   expect(result).toBeTruthy();
 });
+
+it('title gets set', () => {
+  const truthy = shallow(<Button title="test" callback={() => {}} />).contains(
+    'test'
+  );
+  const falsy = shallow(<Button title="testy" callback={() => {}} />).contains(
+    'test'
+  );
+  expect(truthy).toBeTruthy();
+  expect(falsy).toBeFalsy();
+});
