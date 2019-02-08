@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NumberButton from './button/NumberButton';
+import AdditionButton from './button/AdditionButton';
 import './Calculator.css';
 
 interface CalculatorProps {
@@ -8,6 +9,7 @@ interface CalculatorProps {
 
 interface CalculatorState {
   entryValue: string;
+  stateValue: number;
   isEditing: boolean;
 }
 
@@ -16,12 +18,21 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
     super(props);
     this.state = {
       entryValue: '0',
+      stateValue: 0,
       isEditing: false
     };
   }
 
   updateInput(newValue: string) {
     this.setState({ entryValue: newValue, isEditing: true });
+  }
+
+  updateValue(newValue: number, isEditing: boolean) {
+    this.setState({
+      stateValue: newValue,
+      entryValue: newValue.toString(),
+      isEditing
+    });
   }
 
   render() {
@@ -59,7 +70,13 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
           />
-          <button className="Calculator-plus">+</button>
+          <AdditionButton
+            updateValue={this.updateValue.bind(this)}
+            number={this.state.stateValue}
+            displayValue={this.state.entryValue}
+          />
+
+          {/* <button className="Calculator-plus">+</button> */}
           <NumberButton
             number={4}
             isEditing={this.state.isEditing}
