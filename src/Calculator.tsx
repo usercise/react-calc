@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberButton from './NumberButton';
 import './Calculator.css';
 
 interface CalculatorProps {
@@ -30,22 +31,62 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
       >
         <h2 className="Calculator-result">{this.state.value}</h2>
         <div className="Calculator-inputs">
-          <button>C</button>
+          <button onClick={e => this.updateValue('0')}>C</button>
           <button>/</button>
           <button>*</button>
           <button>-</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
+          <NumberButton
+            number={7}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={8}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={9}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
           <button className="Calculator-plus">+</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
+          <NumberButton
+            number={4}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={5}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={6}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
           <button className="Calculator-equal">=</button>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button className="Calculator-zero">0</button>
+          <NumberButton
+            number={1}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={2}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={3}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
+          <NumberButton
+            number={0}
+            currentValue={this.state.value}
+            updateValue={this.updateValue.bind(this)}
+          />
           <button>.</button>
         </div>
       </div>
