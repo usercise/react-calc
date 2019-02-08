@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import NumberButton from './button/NumberButton';
 import AdditionButton from './button/AdditionButton';
+import SubtractionButton from './button/SubtractionButton';
+import MultiplicationButton from './button/MultiplicationButton';
+import DivisionButton from './button/DivisionButton';
+import EqualButton from './button/EqualButton';
+import DotButton from './button/DotButton';
 import './Calculator.css';
 
 interface CalculatorProps {
@@ -45,13 +50,31 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
         <h2 className="Calculator-result">{this.state.entryValue}</h2>
         <div className="Calculator-inputs">
           <button
-            onClick={e => this.setState({ entryValue: '0', isEditing: false })}
+            onClick={e =>
+              this.setState({
+                entryValue: '0',
+                stateValue: 0,
+                isEditing: false
+              })
+            }
           >
             C
           </button>
-          <button>/</button>
-          <button>*</button>
-          <button>-</button>
+          <DivisionButton
+            updateValue={this.updateValue.bind(this)}
+            number={this.state.stateValue}
+            displayValue={this.state.entryValue}
+          />
+          <MultiplicationButton
+            updateValue={this.updateValue.bind(this)}
+            number={this.state.stateValue}
+            displayValue={this.state.entryValue}
+          />
+          <SubtractionButton
+            updateValue={this.updateValue.bind(this)}
+            number={this.state.stateValue}
+            displayValue={this.state.entryValue}
+          />
           <NumberButton
             number={7}
             isEditing={this.state.isEditing}
@@ -75,8 +98,6 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             number={this.state.stateValue}
             displayValue={this.state.entryValue}
           />
-
-          {/* <button className="Calculator-plus">+</button> */}
           <NumberButton
             number={4}
             isEditing={this.state.isEditing}
@@ -95,7 +116,12 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
           />
-          <button className="Calculator-equal">=</button>
+          <EqualButton
+            updateValue={this.updateValue.bind(this)}
+            number={this.state.stateValue}
+            displayValue={this.state.entryValue}
+          />
+
           <NumberButton
             number={1}
             isEditing={this.state.isEditing}
@@ -120,7 +146,11 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
           />
-          <button>.</button>
+          <DotButton
+            isEditing={this.state.isEditing}
+            displayValue={this.state.entryValue}
+            updateInput={this.updateInput.bind(this)}
+          />
         </div>
       </div>
     );
