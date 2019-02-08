@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NumberButton from './NumberButton';
+import NumberButton from './button/NumberButton';
 import './Calculator.css';
 
 interface CalculatorProps {
@@ -20,7 +20,7 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
     };
   }
 
-  updateValue(newValue: string) {
+  updateInput(newValue: string) {
     this.setState({ entryValue: newValue, isEditing: true });
   }
 
@@ -45,63 +45,63 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             number={7}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={8}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={9}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <button className="Calculator-plus">+</button>
           <NumberButton
             number={4}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={5}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={6}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <button className="Calculator-equal">=</button>
           <NumberButton
             number={1}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={2}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={3}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <NumberButton
             number={0}
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
-            updateValue={this.updateValue.bind(this)}
+            updateInput={this.updateInput.bind(this)}
           />
           <button>.</button>
         </div>
