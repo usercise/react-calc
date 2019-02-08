@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import NumberButton from './button/NumberButton';
-import AdditionButton from './button/AdditionButton';
-import SubtractionButton from './button/SubtractionButton';
-import MultiplicationButton from './button/MultiplicationButton';
-import DivisionButton from './button/DivisionButton';
-import EqualButton from './button/EqualButton';
+import FunctionButton from './button/FunctionButton';
 import DotButton from './button/DotButton';
 import './Calculator.css';
 
@@ -15,6 +11,7 @@ interface CalculatorProps {
 interface CalculatorState {
   entryValue: string;
   stateValue: number;
+  lastFunctionCall: string;
   isEditing: boolean;
 }
 
@@ -24,6 +21,7 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
     this.state = {
       entryValue: '0',
       stateValue: 0,
+      lastFunctionCall: '+',
       isEditing: false
     };
   }
@@ -38,6 +36,29 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
       entryValue: newValue.toString(),
       isEditing
     });
+  }
+
+  functionButtonUpdateValue(newFunction: string, isEditing: boolean) {
+    const newValue = this.calculateFunction();
+    this.setState(oldState => ({
+      stateValue: newValue,
+      entryValue: newValue.toString(),
+      lastFunctionCall:
+        newFunction === '=' ? oldState.lastFunctionCall : newFunction,
+      isEditing
+    }));
+  }
+
+  calculateFunction() {
+    switch (this.state.lastFunctionCall) {
+      case '-':
+        return this.state.stateValue - parseFloat(this.state.entryValue);
+      case '*':
+        return this.state.stateValue * parseFloat(this.state.entryValue);
+      case '/':
+        return this.state.stateValue / parseFloat(this.state.entryValue);
+    }
+    return this.state.stateValue + parseFloat(this.state.entryValue);
   }
 
   render() {
@@ -60,20 +81,26 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
           >
             C
           </button>
-          <DivisionButton
-            updateValue={this.updateValue.bind(this)}
-            number={this.state.stateValue}
+          <FunctionButton
             displayValue={this.state.entryValue}
+            call="/"
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
           />
-          <MultiplicationButton
-            updateValue={this.updateValue.bind(this)}
-            number={this.state.stateValue}
+          <FunctionButton
             displayValue={this.state.entryValue}
+            call="*"
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
           />
-          <SubtractionButton
-            updateValue={this.updateValue.bind(this)}
-            number={this.state.stateValue}
+          <FunctionButton
             displayValue={this.state.entryValue}
+            call="-"
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
           />
           <NumberButton
             number={7}
@@ -93,10 +120,12 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
           />
-          <AdditionButton
-            updateValue={this.updateValue.bind(this)}
-            number={this.state.stateValue}
+          <FunctionButton
             displayValue={this.state.entryValue}
+            call="+"
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
           />
           <NumberButton
             number={4}
@@ -116,12 +145,13 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
           />
-          <EqualButton
-            updateValue={this.updateValue.bind(this)}
-            number={this.state.stateValue}
+          <FunctionButton
             displayValue={this.state.entryValue}
+            call="="
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
           />
-
           <NumberButton
             number={1}
             isEditing={this.state.isEditing}
