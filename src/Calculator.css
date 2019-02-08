@@ -6,12 +6,12 @@
 }
 
 .Calculator {
-  max-width: 500px;
+  max-width: 30rem;
   padding: 2rem;
 }
 
 .Calculator--large {
-  max-width: 1500px;
+  max-width: none;
 }
 
 .Calculator-result {
