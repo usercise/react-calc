@@ -31,14 +31,23 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
   }
 
   functionButtonUpdateValue(newFunction: string, isEditing: boolean) {
-    const newValue = this.calculateFunction();
-    this.setState(oldState => ({
-      stateValue: newValue,
-      entryValue: newValue.toString(),
-      lastFunctionCall:
-        newFunction === '=' ? oldState.lastFunctionCall : newFunction,
-      isEditing
-    }));
+    if ('C' === newFunction) {
+      this.setState({
+        entryValue: '0',
+        stateValue: 0,
+        isEditing: false,
+        lastFunctionCall: '+'
+      });
+    } else {
+      const newValue = this.calculateFunction();
+      this.setState(oldState => ({
+        stateValue: newValue,
+        entryValue: newValue.toString(),
+        lastFunctionCall:
+          newFunction === '=' ? oldState.lastFunctionCall : newFunction,
+        isEditing
+      }));
+    }
   }
 
   calculateFunction() {
@@ -62,33 +71,25 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
       >
         <h2 className="Calculator-result">{this.state.entryValue}</h2>
         <div className="Calculator-inputs">
-          <button
-            onClick={e =>
-              this.setState({
-                entryValue: '0',
-                stateValue: 0,
-                isEditing: false
-              })
-            }
-          >
-            C
-          </button>
           <FunctionButton
-            displayValue={this.state.entryValue}
+            call="C"
+            functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
+              this
+            )}
+          />
+          <FunctionButton
             call="/"
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
             )}
           />
           <FunctionButton
-            displayValue={this.state.entryValue}
             call="*"
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
             )}
           />
           <FunctionButton
-            displayValue={this.state.entryValue}
             call="-"
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
@@ -113,7 +114,6 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             updateInput={this.updateInput.bind(this)}
           />
           <FunctionButton
-            displayValue={this.state.entryValue}
             call="+"
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
@@ -139,7 +139,6 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             updateInput={this.updateInput.bind(this)}
           />
           <FunctionButton
-            displayValue={this.state.entryValue}
             call="="
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this

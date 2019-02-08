@@ -3,7 +3,6 @@ import Button from './Button';
 
 interface FunctionButtonProps {
   call: string;
-  displayValue: string;
   modifier?: string;
   functionButtonUpdateValue: (newFunction: string, isEditing: boolean) => void;
 }
