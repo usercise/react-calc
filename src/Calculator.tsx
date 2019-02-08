@@ -30,14 +30,6 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
     this.setState({ entryValue: newValue, isEditing: true });
   }
 
-  updateValue(newValue: number, isEditing: boolean) {
-    this.setState({
-      stateValue: newValue,
-      entryValue: newValue.toString(),
-      isEditing
-    });
-  }
-
   functionButtonUpdateValue(newFunction: string, isEditing: boolean) {
     const newValue = this.calculateFunction();
     this.setState(oldState => ({
