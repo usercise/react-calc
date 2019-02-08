@@ -1,4 +1,24 @@
 .Button {
+  border-width: 0;
   border-radius: 6px;
   padding: 4px;
+  background-color: rgb(221, 146, 34);
+  color: #fff;
+  line-height: 1.5em;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.Button--plus {
+  grid-row: 2 / 4;
+  grid-column: 4;
+}
+
+.Button--equal {
+  grid-row: 4 / 6;
+  grid-column: 4;
+}
+
+.Button--zero {
+  grid-column: 1 / 3;
 }

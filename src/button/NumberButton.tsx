@@ -4,6 +4,7 @@ import Button from './Button';
 interface NumberButtonProps {
   number: number;
   displayValue: string;
+  modifier?: string;
   isEditing: boolean;
   updateInput: (newValue: string) => void;
 }
@@ -18,7 +19,12 @@ const NumberButton: React.SFC<NumberButtonProps> = props => {
     props.updateInput(newValue);
   };
   return (
-    <Button title={strNumber} buttonValue={props.number} callback={addValue} />
+    <Button
+      title={strNumber}
+      modifier={props.modifier}
+      buttonValue={props.number}
+      callback={addValue}
+    />
   );
 };
 export default NumberButton;

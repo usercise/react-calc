@@ -29,27 +29,3 @@
   color: #fff;
   padding: 1rem;
 }
-
-.Calculator-zero {
-  grid-column: 1 / 3;
-}
-
-.Calculator-plus {
-  grid-row: 2 / 4;
-  grid-column: 4;
-}
-
-.Calculator-equal {
-  grid-row: 4 / 6;
-  grid-column: 4;
-}
-
-.Calculator-inputs > button {
-  background-color: rgb(221, 146, 34);
-  color: #fff;
-  border-width: 0;
-  border-radius: 4px;
-  line-height: 1.5em;
-  font-size: 1.2rem;
-  font-weight: 600;
-}

@@ -118,6 +118,7 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
             )}
+            modifier="plus"
           />
           <NumberButton
             number={4}
@@ -143,6 +144,7 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             functionButtonUpdateValue={this.functionButtonUpdateValue.bind(
               this
             )}
+            modifier="equal"
           />
           <NumberButton
             number={1}
@@ -167,6 +169,7 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
             isEditing={this.state.isEditing}
             displayValue={this.state.entryValue}
             updateInput={this.updateInput.bind(this)}
+            modifier="zero"
           />
           <DotButton
             isEditing={this.state.isEditing}
