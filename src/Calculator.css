@@ -19,6 +19,8 @@
   text-align: right;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Calculator-inputs {
