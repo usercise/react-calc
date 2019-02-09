@@ -20,9 +20,8 @@ describe('<Button />', () => {
   });
 
   it('Button DOM to not have changed', () => {
-    const component = render(<Button title="test" callback={() => {}} />);
-    let tree = component.serialize();
-    expect(tree).toMatchSnapshot();
+    const component = shallow(<Button title="test" callback={() => {}} />);
+    expect(component.html()).toMatchSnapshot();
   });
 
   it('class name to match element', () => {

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FunctionButton /> Button DOM to not have changed 1`] = `"<button class=\\"Button\\" type=\\"button\\">/</button>"`;

@@ -18,7 +18,7 @@ describe('<NumberButton />', () => {
   });
 
   it('Button DOM to not have changed', () => {
-    const component = render(
+    const component = shallow(
       <NumberButton
         number={1}
         updateInput={() => {}}
@@ -26,24 +26,33 @@ describe('<NumberButton />', () => {
         displayValue="10"
       />
     );
-    let tree = component.serialize();
-    expect(tree).toMatchSnapshot();
+    expect(component.html()).toMatchSnapshot();
   });
 
   it('modifier gets set', () => {
-    expect(
-      mount(
-        <NumberButton
-          number={1}
-          updateInput={() => {}}
-          isEditing={true}
-          displayValue="10"
-          modifier="test"
-        />
-      )
-        .find('button')
-        .hasClass('Button--test')
-    ).toBeTruthy();
+    const wrapper = shallow(
+      <NumberButton
+        number={1}
+        updateInput={() => {}}
+        isEditing={true}
+        displayValue="10"
+        modifier="test"
+      />
+    );
+    expect(wrapper.find(Button).prop('modifier')).toEqual('test');
+  });
+
+  it('title gets set', () => {
+    const wrapper = shallow(
+      <NumberButton
+        number={1}
+        updateInput={() => {}}
+        isEditing={true}
+        displayValue="10"
+        modifier="test"
+      />
+    );
+    expect(wrapper.find(Button).prop('title')).toEqual('1');
   });
 
   it('simulates click events', () => {
@@ -60,7 +69,7 @@ describe('<NumberButton />', () => {
     expect(onButtonClick).toHaveBeenCalled();
   });
 
-  it('click events return correct value when editing', () => {
+  it('click events called with correct value when editing', () => {
     const onButtonClick = jest.fn();
     const wrapper = mount(
       <NumberButton
@@ -74,7 +83,7 @@ describe('<NumberButton />', () => {
     expect(onButtonClick).toHaveBeenCalledWith('101');
   });
 
-  it('click events return correct value when not editing', () => {
+  it('click events called with correct value when not editing', () => {
     const onButtonClick = jest.fn();
     const wrapper = mount(
       <NumberButton
@@ -88,7 +97,7 @@ describe('<NumberButton />', () => {
     expect(onButtonClick).toHaveBeenCalledWith('1');
   });
 
-  it('click events return correct value when called with zero', () => {
+  it('click events called with correct value when display value is zero', () => {
     const onButtonClick = jest.fn();
     const wrapper = mount(
       <NumberButton
