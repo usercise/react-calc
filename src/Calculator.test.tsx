@@ -79,4 +79,18 @@ describe('<Calculator />', () => {
 
     expect(component.find('.Calculator-result').text()).toBe('2');
   });
+
+  it('display to show 3 after clicking 1 + 1 = =', () => {
+    const component = mount(<Calculator isLargeSize={false} />);
+    const numberOne = component.find(NumberButton).at(6);
+    const functionPlus = component.find(FunctionButton).at(5);
+    const functionEqual = component.find(FunctionButton).last();
+    numberOne.simulate('click');
+    functionPlus.simulate('click');
+    numberOne.simulate('click');
+    functionEqual.simulate('click');
+    functionEqual.simulate('click');
+
+    expect(component.find('.Calculator-result').text()).toBe('3');
+  });
 });

@@ -13,6 +13,10 @@ interface CalculatorState {
   stateValue: number;
   lastFunctionCall: string;
   isEditing: boolean;
+  equalCall: null | {
+    value: number;
+    func: string;
+  };
 }
 
 class Calculator extends Component<CalculatorProps, CalculatorState> {
@@ -22,7 +26,8 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
       entryValue: '0',
       stateValue: 0,
       lastFunctionCall: '+',
-      isEditing: false
+      isEditing: false,
+      equalCall: null
     };
   }
 
@@ -39,27 +44,38 @@ class Calculator extends Component<CalculatorProps, CalculatorState> {
         lastFunctionCall: '+'
       });
     } else {
-      const newValue = this.calculateFunction();
+      const numberValue = parseFloat(this.state.entryValue);
+      const newValue =
+        '=' === newFunction && this.state.equalCall
+          ? this.calculateFunction(
+              this.state.equalCall.func,
+              this.state.equalCall.value
+            )
+          : this.calculateFunction(this.state.lastFunctionCall, numberValue);
       this.setState(oldState => ({
         stateValue: newValue,
         entryValue: newValue.toString(),
         lastFunctionCall:
           newFunction === '=' ? oldState.lastFunctionCall : newFunction,
+        equalCall:
+          newFunction === '='
+            ? { func: oldState.lastFunctionCall, value: numberValue }
+            : null,
         isEditing
       }));
     }
   }
 
-  calculateFunction() {
-    switch (this.state.lastFunctionCall) {
+  calculateFunction(func: string, value: number) {
+    switch (func) {
       case '-':
-        return this.state.stateValue - parseFloat(this.state.entryValue);
+        return this.state.stateValue - value;
       case '*':
-        return this.state.stateValue * parseFloat(this.state.entryValue);
+        return this.state.stateValue * value;
       case '/':
-        return this.state.stateValue / parseFloat(this.state.entryValue);
+        return this.state.stateValue / value;
     }
-    return this.state.stateValue + parseFloat(this.state.entryValue);
+    return this.state.stateValue + value;
   }
 
   render() {
