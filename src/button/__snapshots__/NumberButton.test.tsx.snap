@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NumberButton /> Button DOM to not have changed 1`] = `""`;
