@@ -6,12 +6,14 @@ interface ButtonProps {
   callback: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   buttonValue?: any;
   modifier?: string;
+  isActive?: boolean;
 }
 
 const Button: React.SFC<ButtonProps> = props => {
+  const isActive = props.isActive ? ' isActive' : '';
   const classNames = props.modifier
-    ? `Button Button--${props.modifier}`
-    : 'Button';
+    ? `Button${isActive} Button--${props.modifier}`
+    : `Button${isActive}`;
   return (
     <button
       className={classNames}

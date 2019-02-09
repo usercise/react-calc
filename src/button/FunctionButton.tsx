@@ -4,6 +4,7 @@ import Button from './Button';
 interface FunctionButtonProps {
   call: string;
   modifier?: string;
+  isActive?: boolean;
   functionButtonUpdateValue: (newFunction: string, isEditing: boolean) => void;
 }
 
@@ -16,6 +17,7 @@ const FunctionButton: React.SFC<FunctionButtonProps> = props => {
       modifier={props.modifier}
       title={props.call}
       callback={buttonCall}
+      isActive={props.isActive}
     />
   );
 };

@@ -9,6 +9,11 @@
   font-weight: 600;
 }
 
+.Button.isActive {
+  color: rgb(221, 146, 34);
+  background-color: #fff;
+}
+
 .Button--plus {
   grid-row: 2 / 4;
   grid-column: 4;
